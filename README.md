@@ -1,6 +1,6 @@
-# OOP_EXERCISE_TEMPLATE
+# OOP_EXERCISE_04
 
-This is a template repository for OOP Exercises. You are full free to use it as base for your exercise work.
+4'th exercise work
 
 # Build Status
-[![CircleCI](https://circleci.com/gh/DeadBlasoul/oop_exercise_template.svg?style=svg)](https://circleci.com/gh/DeadBlasoul/oop_exercise_template)
+[![CircleCI](https://circleci.com/gh/DeadBlasoul/oop_exercise_04.svg?style=svg)](https://circleci.com/gh/DeadBlasoul/oop_exercise_04)
