@@ -9,15 +9,10 @@ jobs:
     build-and-test:
         docker:
             - image: "gcc:8.2"
-        steps:
-            - restore_cache:
-                keys:
-                    - source-v1-{{ .Branch }}-{{ .Revision }}
-                    - source-v1-{{ .Branch }}-
-                    - source-v1-
-            
+        steps: 
             - checkout
 
+            # Prepare container
             - run:
                 name: Install Sudo
                 command: 'apt-get update && apt-get install -y sudo'
@@ -28,17 +23,15 @@ jobs:
                 name: Install Latest CMake
                 command: 'sudo python3 -m pip install cmake'
 
-            - save_cache:
-                key: source-v1-{{ .Branch }}-{{ .Revision }}
-                paths:
-                    - ".git"
-
+            # Build
             - run:
                 name: Creating Build Files
                 command: 'cmake -H. -Bbuild'
             - run:
                 name: Creating Binary Files
                 command: 'cmake --build build'
+
+            # Test
             - run:
                 name: Testing
                 command: 'cd build; ctest'
