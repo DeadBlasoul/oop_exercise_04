@@ -40,3 +40,6 @@ bin
 
 # Visual Studio and VS Code folders
 .vs*
+
+*.log
+*.aux
