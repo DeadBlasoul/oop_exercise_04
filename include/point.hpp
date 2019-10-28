@@ -48,7 +48,7 @@ struct point {
         return _Dimensions;
     }
 
-    point operator+(const point& other) {
+    point operator+(const point& other) const {
         point result = *this;
 
         for (size_t i = 0; i < result.size(); i++) {
@@ -58,7 +58,7 @@ struct point {
         return result;
     }
 
-    point operator-(const point& other) {
+    point operator-(const point& other) const {
         point result = *this;
 
         for (size_t i = 0; i < result.size(); i++) {
