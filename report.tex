@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+
+\usepackage{fullpage}
+\usepackage{multicol,multirow}
+\usepackage{tabularx}
+\usepackage{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{minted}
+
+% Оригиналный шаблон: http://k806.ru/dalabs/da-report-template-2012.tex
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\textbf{МИНИСТЕРСТВО ОБРАЗОВАНИЯ И НАУКИ РОССИЙСОЙ ФЕДЕРАЦИИ
+\medskip
+МОСКОВСКИЙ АВЦИАЦИОННЫЙ ИНСТИТУТ
+(НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЬЕЛЬСКИЙ УНИВЕРСТИТЕТ)
+\vfill\vfill
+{\Huge ЛАБОРАТОРНАЯ РАБОТА №4} 
+по курсу объектно-ориентированное программирование
+I семестр, 2019/20 уч. год}
+\end{center}
+\vfill
+
+Студент \uline{\it {Попов Данила Андреевич, группа 08-208Б-18}\hfill}
+
+Преподаватель \uline{\it {Журавлёв Андрей Андреевич}\hfill}
+
+\vfill
+\end{titlepage}
+
+\subsection*{Условие}
+
+Задание №1: написать программу, которая реализует работу с фигурами: 
+\begin{enumerate}
+\item Ввод фигуры
+\item Ввод фигуры как tuple
+\end{enumerate}
+
+\subsection*{Описание программы}
+
+Код программы состоит из 4-ти файлов:
+\begin{enumerate}
+\item app/main.cpp: исходный код с точкой входа
+\item include/algorithm.hpp: объявление и реализация generic структур
+\item include/polygon.hpp: объявление и реализация generic структур
+\item inclue/point.hpp: объявление и реализация generic структур
+\end{enumerate}
+
+\subsection*{Выводы}
+Шаблоны Visual C++ не полностью совместимы с шаблонами из GCC.
+\vfill
+
+\subsection*{Исходный код}
+
+
+%{\Huge main.hpp}
+%\inputminted
+%{C++}{app/main.cpp}
+%\pagebreak
+
+{\Huge algorithm.hpp}
+\inputminted
+{C++}{include/algorithm.hpp}
+\pagebreak
+
+{\Huge polygon.hpp}
+\inputminted
+{C++}{include/polygon.hpp}
+\pagebreak
+
+{\Huge point.hpp}
+\inputminted
+{C++}{include/point.hpp}
+\pagebreak
+
+\end{document}
