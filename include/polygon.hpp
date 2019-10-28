@@ -5,6 +5,7 @@
 #include <type_traits>
 #include <istream>
 #include <ostream>
+#include <stdexcept>
 
 /*
     basic_polygon traits
@@ -51,7 +52,7 @@ public:
             stream >> point;
         }
         if (stream.fail()) {
-            throw std::exception("bad polygon initialization");
+            throw std::runtime_error("bad polygon initialization");
         }
     }
     basic_polygon(const vertex& v) noexcept {
@@ -109,7 +110,7 @@ public:
         }
         else {
             // generate compile-time error
-            static_assert(false, "ix is out of range");
+            static_assert(_Ix < _NumOfPoints, "ix is out of range");
         }
     }
 
@@ -132,21 +133,24 @@ public:
 
 private:
     vertex points[_NumOfPoints];
+
+    template<size_t _Ix, typename _V, size_t _N>
+    friend constexpr auto std::get(const basic_polygon<_V, _N>& polygon);
 };
 
 // std types spetializations for structured binding of basic_polygon
 namespace std {
+    template<size_t _Ix, typename _Vertex, size_t _NumOfPoints>
+    constexpr auto get(const basic_polygon<_Vertex, _NumOfPoints>& polygon) {
+        return polygon.points[_Ix];
+    }
+
     template<typename _Vertex, size_t _NumOfPoints>
     struct tuple_size<::basic_polygon<_Vertex, _NumOfPoints>>
         : integral_constant<size_t, _NumOfPoints> {};
 
     template<size_t _Ix, typename _Vertex, size_t _NumOfPoints>
     struct tuple_element<_Ix, ::basic_polygon<_Vertex, _NumOfPoints>> {
-        using type = decltype (declval<::basic_polygon<_Vertex, _NumOfPoints>>().get<_Ix>());
+        using type = decltype(get<_Ix>(declval<::basic_polygon<_Vertex, _NumOfPoints>>()));
     };
-
-    template<size_t _Ix, typename _Vertex, size_t _NumOfPoints>
-    constexpr auto get(const basic_polygon<_Vertex, _NumOfPoints>& polygon) {
-        return polygon.get<_Ix>();
-    }
 } // namespace std

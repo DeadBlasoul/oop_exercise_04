@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <exception>
+#include <stdexcept>
 
 #include <polygon.hpp>
 #include <algorithm.hpp>
@@ -41,7 +41,7 @@ void process_tuple(std::istream& in, std::ostream& out) {
         rhombus r;
         read_rhombus(in, r);
         if (in.fail()) {
-            throw std::exception("tetragon is not a rhombus");
+            throw std::runtime_error("tetragon is not a rhombus");
         }
 
         auto [a, b, c, d] = r;
@@ -69,7 +69,7 @@ void process_tuple(std::istream& in, std::ostream& out) {
     }
 
     default:
-        throw std::exception("incorrect number of angles");
+        throw std::runtime_error("incorrect number of angles");
     }
 }
 
@@ -81,7 +81,7 @@ void process_type(std::istream& in, std::ostream& out) {
         rhombus r;
         read_rhombus(in, r);
         if (in.fail()) {
-            throw std::exception("tetragon is not a rhombus");
+            throw std::runtime_error("tetragon is not a rhombus");
         }
         print2d(out, r);
     }
@@ -93,7 +93,7 @@ void process_type(std::istream& in, std::ostream& out) {
         hexagon fig(in);
         print2d(out, fig);
     } else {
-        throw std::exception("unknown type");
+        throw std::runtime_error("unknown type");
     }
 }
 
