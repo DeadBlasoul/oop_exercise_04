@@ -30,8 +30,7 @@ namespace detail {
 
         using std::get;
 
-        double result = 0;
-        ((result += get<_Ix>(tuple)[x] * (get<_Ix + 1>(tuple)[y] - get<_Ix - 1>(tuple)[y])), ...);
+        double result = ((get<_Ix>(tuple)[x] * (get<_Ix + 1>(tuple)[y] - get<_Ix - 1>(tuple)[y])) + ...);
         auto constexpr first = 0;
         auto constexpr last = tuple_size - 1;
         result += get<first>(tuple)[x] * (get<first + 1>(tuple)[y] - get<last>(tuple)[y]);
@@ -50,12 +49,17 @@ namespace detail {
         auto constexpr x = 0;
         auto constexpr y = 1;
 
-        vertex result = { 0, 0 };
-        ((result = result + std::get<_Ix>(tuple)), ...);
+        vertex result = (std::get<_Ix>(tuple) + ...);
         result[x] /= tuple_size;
         result[y] /= tuple_size;
 
         return result;
+    }
+
+    template<typename _T, std::size_t... _Ix>
+    auto print_points2d(std::ostream& out, const _T& tuple, std::index_sequence<_Ix...>) {
+        auto constexpr tuple_size = std::tuple_size<_T>{}();
+        (out << ... << std::get<_Ix>(tuple));
     }
 }
 
@@ -92,5 +96,7 @@ auto print2d(std::ostream& stream, const _T& tuple) {
 
     stream << "center: " << center2d(tuple) << endl
            << "area:   " << area2d(tuple) << endl
-           << endl;
+           << "points: ";
+    detail::print_points2d(stream, tuple, std::make_index_sequence<tuple_size>{});
+    stream << endl << endl;
 }

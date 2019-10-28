@@ -151,6 +151,6 @@ namespace std {
 
     template<size_t _Ix, typename _Vertex, size_t _NumOfPoints>
     struct tuple_element<_Ix, ::basic_polygon<_Vertex, _NumOfPoints>> {
-        using type = decltype(get<_Ix>(declval<::basic_polygon<_Vertex, _NumOfPoints>>()));
+        using type = typename basic_polygon_traits<_Vertex>::vertex;
     };
 } // namespace std
