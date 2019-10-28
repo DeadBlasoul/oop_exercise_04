@@ -28,8 +28,8 @@ verbose_log(MESSAGE "Project include dirs: " ${PROJECT_INCLUDE_DIRS})
 verbose_log(MESSAGE "Project source dirs: " ${PROJECT_SRC_DIRS})
 
 # Main targets names
-set(App ${ProjectName}    CACHE STRING "Executable name")
-set(Lib lib${ProjectName} CACHE STRING "Library name")
+set(App ${ProjectName})
+set(Lib lib${ProjectName})
 verbose_log(MESSAGE "Application name: " ${App})
 verbose_log(MESSAGE "Main library name: " ${Lib})
 
