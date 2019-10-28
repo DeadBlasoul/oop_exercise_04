@@ -106,6 +106,7 @@ int main() {
 
     string mode;
     while (cin) {
+        mode.clear();
         cin >> mode;
         try {
             if (mode == "tuple") {
